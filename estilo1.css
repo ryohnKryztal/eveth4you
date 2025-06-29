@@ -1,0 +1,250 @@
+html, body {
+  height: 90%;
+  margin: 0;
+  padding: 0;
+}
+body {
+    background-color: #232824;
+    color: #ccc;
+    padding: 20px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+}
+
+#particles-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    background: transparent;
+}
+
+.console {
+    position: relative;
+    z-index: 1;
+}
+
+.jp {
+    color: #EBFFD5;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.title {
+    color: #EBFFD5;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.link {
+    color: #8E92FF;
+    text-decoration: underline;
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 1.0em;
+    outline: none;
+    border: none;
+}
+
+.link:focus,
+.link:active {
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    -webkit-tap-highlight-color: transparent;
+    color: #FFFB8E; /* rosa pastel */
+}
+
+/* Estilos para el efecto de neón (solo cambio de color, sin sombras) */
+.link.neon {
+    animation: neon-color-pastel-change 2s ease-in-out infinite alternate; /* Aplica la nueva animación */
+    text-decoration: none; /* Opcional: Quitar el subrayado si quieres un look más "limpio" de neón */
+}
+
+/* Animación para el cambio de color suave con 3 colores pastel */
+@keyframes neon-color-pastel-change {
+    0% {
+        color: #FF8ED2; /* Pastel Azul Claro */
+    }
+    33% {
+        color: #8E9AFF; /* Pastel Rosa/Púrpura */
+    }
+    66% {
+        color: #FF7987; /* Pastel Amarillo/Crema */
+    }
+    100% {
+        color: #FF8ED2; /* Vuelve al primer color para un bucle suave */
+    }
+}
+
+/* Nueva clase para el estado de click */
+.link.neon.clicked {
+    color: #43B69B !important; /* El color deseado al hacer click */
+    animation: none !important; /* Detiene la animación de cambio de color */
+    /* Si tenías text-shadow antes y quieres que vuelva al hacer click, lo agregarías aquí */
+    /* text-shadow: 0 0 5px #B6435E, 0 0 10px #B6435E, 0 0 20px #B6435E; */
+}
+
+
+.inicio-link {
+    margin-top: 20px;
+    display: inline-block;
+}
+
+.acciones {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.divider {
+    border-top: 1px solid #555;
+    margin: 25px 0;
+}
+
+p {
+    margin: 5px 0;
+}
+
+/* --- Animación de parpadeo para la flecha --- */
+@keyframes blink {
+    0% {
+        opacity: 1; /* Completamente visible */
+    }
+    50% {
+        opacity: 0; /* Completamente transparente (oculto) */
+    }
+    100% {
+        opacity: 1; /* Vuelve a ser visible */
+    }
+}
+
+.flashing-arrow {
+    animation: blink 1s infinite; /* Aplica la animación 'blink' por 1 segundo, repitiéndola infinitamente */
+}
+
+.error-prefix {
+    color: #C9466A; /* Rojo brillante para "ERROR:" */
+    font-weight: bold;
+}
+
+/* --- Estilos para el Modal (General) --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro semi-transparente */
+backdrop-filter: blur(0.8px);
+    z-index: 1000; /* Asegura que esté por encima de todo */
+    opacity: 0; /* Empieza completamente transparente */
+    transition: opacity 0.3s ease-in-out; /* Transición suave de opacidad */
+    pointer-events: none; /* Permite clics a través del overlay cuando es invisible */
+    /* Por defecto, los modales están ocultos */
+    visibility: hidden;
+}
+
+/* Regla CSS para mostrar el modal cuando su ID está en la URL (ancla) */
+.modal-overlay:target {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+    
+}
+
+.modal-content {
+    background-color: rgba(0, 0, 0, 0.4);
+border: 0.5px solid #4E4C4D;
+    padding: 25px;
+    border-radius: 7px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 250px;
+    color: #ccc;
+}
+
+
+
+.modal-close {
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    font-size: 32px;
+    cursor: pointer;
+    color: #C9466A;
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    -webkit-tap-highlight-color: transparent;
+    text-decoration: none; /* ¡Añade esta línea! */
+}
+
+.modal-close:hover {
+    color: #555;
+   
+}
+
+.modal-body {
+    
+    margin-top: 10px;
+    font-size: 1.0em;
+    text-align: center; /* Esto centra el texto y los botones */
+
+    /* --- Añadido para centrar el video con Flexbox --- */
+    display: flex; /* Convierte el modal-body en un contenedor flex */
+    flex-direction: column; /* Apila los elementos verticalmente */
+    align-items: center; /* Centra los elementos horizontalmente en el eje cruzado */
+    /* --- Fin de los añadidos --- */
+}
+
+/* Estilo para los botones dentro del modal */
+.modal-body button {
+    background-color: transparent; /* Hace el fondo del botón transparente */
+    color: #8E92FF; /* Mantiene el color del texto blanco */
+    border: 0.8px solid #8E92FF; /* Añade un borde blanco de 1px sólido */
+    padding: 8px 15px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.9em;
+}
+
+.modal-body button:hover {
+    background-color: rgba(46, 170, 180, 0.1); /* Opcional: un ligero color de fondo al pasar el mouse para indicar interactividad */
+}
+
+
+/* --- ESTILO PARA EL VIDEO --- */
+#video-loquera {
+    /* Aquí están los cambios clave para que el video se haga grande */
+    width: 400px; /* Puedes ajustar este valor. Usa 'auto' o un porcentaje/vw si quieres que sea responsivo. */
+    height: auto; /* Mantiene la proporción del video automáticamente */
+    /* Eliminamos 'max-width: 100%;' para que el video pueda crecer más allá del modal */
+    margin-top: 20px;
+}
+
+
+.container {
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.text {
+    font-family: "Montserrat", sans-serif;
+  
+  font-size: 28px;
+  color: #fafafa;
+}
+.dud {
+  color: #757575;
+}
